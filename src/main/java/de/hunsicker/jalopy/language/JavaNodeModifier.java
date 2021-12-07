@@ -15,7 +15,7 @@ import antlr.collections.AST;
 
 /**
  * Helper class which resolves the different modifiers of a MODIFIERS node.
- * 
+ *
  * <p>
  * This class can be used to get the access level of a class, method, field...
  * </p>
@@ -26,7 +26,6 @@ import antlr.collections.AST;
  * @todo add constant for default (friendly) access
  */
 public final class JavaNodeModifier
-    extends Modifier
 {
     //~ Static variables/initializers ----------------------------------------------------
 
