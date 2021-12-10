@@ -66,7 +66,7 @@ public class NodeWriter
     /** The code convention settings that controls the output style. */
     protected Convention settings;
 
-    /** The envrionment to use. */
+    /** The environment to use. */
     protected Environment environment;
 
     /** Used line separator. Defaults to the platform standard. */
@@ -75,7 +75,7 @@ public class NodeWriter
     /** The original line separator of the file as reported by the lexer. */
     protected String originalLineSeparator;
 
-    /** Should indenting use an added contination amount? */
+    /** Should indenting use an added continuation amount? */
     protected boolean continuation;
 
     /** Should a footer be inserted at the end of every file? */
@@ -91,9 +91,9 @@ public class NodeWriter
      * Indicates whether we're at the beginning of a new line (<code>column == 1</code>).
      */
     protected boolean newline = true;
-    
+
     /** Indicates that the line following this is a new line
-     * Used for printing commas in blocks without white space after the new line 
+     * Used for printing commas in blocks without white space after the new line
      */
     protected boolean nextNewline = false;
 
@@ -163,11 +163,11 @@ public class NodeWriter
 
     /** Used to generate the indent string. */
     private char[] _indentChars;
-    
+
     private CompositeFactory _factory = null;
 
     public int javadocIndent = 0;
-    
+
 
 
     //~ Constructors ---------------------------------------------------------------------
@@ -176,6 +176,7 @@ public class NodeWriter
      * Creates a new NodeWriter object with the given file output format.
      *
      * @param out the output stream to write to.
+     * @param factory
      * @param filename name of the parsed file.
      * @param issues holds the issues found during a run.
      * @param lineSeparator the lineSeparator to use.
@@ -197,7 +198,7 @@ public class NodeWriter
         this.testers = new WriterCache(factory,this);
         _out = out;
     }
-    
+
     public CompositeFactory getCompositeFactory() {
         return _factory;
     }
@@ -514,6 +515,7 @@ public class NodeWriter
             if (leadingIndentSize > 0)
             {
                 _out.write(_leadingIndentSizeString);
+                System.out.println("writing: '" + _leadingIndentSizeString + "'");
                 this.column += leadingIndentSize;
             }
 
@@ -533,6 +535,7 @@ public class NodeWriter
                         String s = generateIndentString(length + string.length());
                         this.column += s.length();
                         _out.write(s);
+                        System.out.println("writing: '" + s + "'");
                     }
                     else
                     {
@@ -543,6 +546,7 @@ public class NodeWriter
                             s = StringHelper.replace(
                                     s, generateIndentString(this.indentSize), TAB);
                             _out.write(s);
+                             System.out.println("writing: '" + s + "'");
                         }
                         else
                         {
@@ -551,9 +555,11 @@ public class NodeWriter
                             s = StringHelper.replace(
                                     s, generateIndentString(this.indentSize), TAB);
                             _out.write(s);
+                            System.out.println("writing: '" + s + "'");
 
                             this.column += string.length();
                             _out.write(string);
+                            System.out.println("writing: '" + string + "'");
                         }
                     }
 
@@ -573,7 +579,9 @@ public class NodeWriter
                     }
 
                     _out.write(s);
+                    System.out.println("writing: '" + s + "'");
                     _out.write(string);
+                    System.out.println("writing: '" + string + "'");
 
                     break;
                 }
@@ -601,21 +609,25 @@ public class NodeWriter
                                 StringHelper.replace(
                                     string, generateIndentString(this.indentSize), TAB);
                             _out.write(string);
+                            System.out.println("writing: '" + string + "'");
                         }
                         else
                         {
                             if (spacesCount < 0)
                             {
                                 _out.write(TAB);
+                                System.out.println("writing: '" + TAB + "'");
                             }
 
                             _out.write(TAB);
+                            System.out.println("writing: '" + TAB + "'");
 
                             string =
                                 StringHelper.replace(
                                     string.substring(this.indentSize - spacesCount),
                                     generateIndentString(this.indentSize), TAB);
                             _out.write(string);
+                            System.out.println("writing: '" + string + "'");
                         }
 
                         break;
@@ -626,6 +638,7 @@ public class NodeWriter
                     offset = this.column;
                     this.column += string.length();
                     _out.write(string);
+                    System.out.println("writing: '" + string + "'");
 
                     break;
             }

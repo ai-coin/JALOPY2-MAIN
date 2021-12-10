@@ -155,7 +155,7 @@ final class ParametersPrinter extends AbstractPrinter {
     } // end print()
 
     /**
-     * Adjusts the aligment offset. Called from {@link #wrapFirst} if the first parameter was
+     * Adjusts the alignment offset. Called from {@link #wrapFirst} if the first parameter was
      * actually wrapped.
      *
      * @param column column offset before the newline was issued.
@@ -232,7 +232,7 @@ final class ParametersPrinter extends AbstractPrinter {
 
                 AST first = null;
 
-SEARCH: 
+SEARCH:
                 for (AST next = expr.getFirstChild(); next != null; next = next.getFirstChild()) {
                     switch (next.getType()) {
                         case JavaTokenTypes.PLUS:
@@ -326,7 +326,7 @@ SEARCH:
      *
      * @return <code>true</code> if line wrap.
      *
-     * @throws IOException if an I/O error occured.
+     * @throws IOException if an I/O error occurred.
      */
     private boolean printImpl(AST        node,
                               int        action,
@@ -681,6 +681,7 @@ SEARCH:
                                     } // end if
 
                                     printIndentation(out);
+//                                    printIndentation(4, out);
                                 } // end if
                                 else {
                                     if (out.newline) {
@@ -735,6 +736,7 @@ SEARCH:
                            out.print(SPACE, JavaTokenTypes.WS);
                        }
                      */
+                    printIndentation(4, out); // SLR
                     PrinterFactory.create(parameter, out).print(parameter, out);
 
                     paramIndex++;
@@ -783,14 +785,14 @@ SEARCH:
 
                     PrinterFactory.create(type, out).print(type, tester);
 
-                    // +3 for ... and +1 for the space between modifiers and name 
+                    // +3 for ... and +1 for the space between modifiers and name
                     if ((tester.length + 4) > result) {
                         result = tester.length + 4;
                     } // end if
 
                     tester.reset();
                     break;
-                    
+
                 default:
 
                     modifier = param.getFirstChild();
@@ -863,7 +865,7 @@ SEARCH:
                 }
             }
 
-            // ignore method parameter calls for wrapping       
+            // ignore method parameter calls for wrapping
             // If we want we could change this but we need to adjust using
             //  setAlignOffset(node, out);
             if (type != JavaTokenTypes.PARAMETERS) {
@@ -908,8 +910,8 @@ SEARCH:
                     TestNodeWriter paramTester2 = out.testers.get();
 
                     // A new line has occured , we need to test to see
-                    // if it would be more efficient for us to make 
-                    // the wrap or the child. 
+                    // if it would be more efficient for us to make
+                    // the wrap or the child.
                     paramTester2.reset(out, false);
                     //paramTester2.indent();
                     if (debugmode) {
@@ -929,7 +931,7 @@ SEARCH:
                         if (littleParam != null) {
                             littleParam = (JavaNode)littleParam.getNextSibling();
                             if (littleParam != null) {
-                                //                        System.out.println("new line - "+paramTester2.line+","+littleParam+","+paramTester2.column); 
+                                //                        System.out.println("new line - "+paramTester2.line+","+littleParam+","+paramTester2.column);
                                 paramTester2.printNewline();
                                 printIndentation(paramTester2);
                             } // end if
@@ -937,7 +939,7 @@ SEARCH:
                     } // end while
 
                     // Results
-                    // Changed to +3 incase another wrap has occured at the correct 
+                    // Changed to +3 incase another wrap has occured at the correct
                     // position this will give a bit of flexibility
                     boolean pt1 = paramTester.maxColumn > (lineLength + 3);
 
@@ -955,14 +957,14 @@ SEARCH:
                     //            boolean pt2 = paramTester2.maxColumn>lineLength;
                     // Test if parameters in tester 1 exceed the line length
                     // or
-                    // paramTester 1 is greater then line length 
+                    // paramTester 1 is greater then line length
                     // or
                     // paramtester 2.state.smallindent is false
                     // and
                     // paramtester 1.state.smallindent is true
                     if ((paramTester.line >= paramTester2.line) ||
                         pt1 ||
-                        (!paramTester2.state.smallIndent && paramTester.state.smallIndent))//if (true) 
+                        (!paramTester2.state.smallIndent && paramTester.state.smallIndent))//if (true)
                      {
                         if (debugmode) {
                             System.out.println("Opting with 2");
@@ -978,14 +980,14 @@ SEARCH:
                         out.testers.release(paramTester2);
                     } // end else
 
-                    // Perform a small indent if tester wrapped small or 
+                    // Perform a small indent if tester wrapped small or
                     // if specified in options
                     smallindent = paramTester.state.smallIndent ||
                                   AbstractPrinter.settings.getBoolean(
                         ConventionKeys.LINE_WRAP_PARAMS_DEEP,
                         ConventionDefaults.LINE_WRAP_PARAMS_DEEP);
                     if (!smallindent) {
-                        // Changed to +3 incase another wrap has occured at the correct 
+                        // Changed to +3 incase another wrap has occured at the correct
                         // position this will give a bit of flexibility
                         smallindent = paramTester.maxColumn > (lineLength + 3);
                     } // end if
@@ -998,7 +1000,7 @@ SEARCH:
                 } // end if
 
                 //end
-                // If we are using a new param tester we need to 
+                // If we are using a new param tester we need to
                 // re initialize the total width
                 // +1 for braces
                 totalParameterWidth = paramTester.maxColumn + 1;
@@ -1023,7 +1025,7 @@ SEARCH:
                 } // end if
             } // end if
             else {
-                // Small indent state only applicable to tester 
+                // Small indent state only applicable to tester
             } // end else
             results[0] = smallindent;
             results[1] = alignMethodCall;
@@ -1058,7 +1060,7 @@ SEARCH:
 
                     AST first = child;
 
-SEARCH: 
+SEARCH:
                     for (AST next = node.getFirstChild(); next != null;
                          next = next.getFirstChild()) {
                         switch (next.getType()) {

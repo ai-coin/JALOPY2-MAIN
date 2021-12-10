@@ -28,8 +28,8 @@ public class GeneratedTestImpl extends java.lang.Object {
    * @return the result of the test string operation
    */
   public java.lang.String testMethod(
-    final String parameterString,
-    final int    parameterInt) {
+          final String parameterString,
+          final int parameterInt) {
     //Preconditions
     assert parameterString != null;
 
