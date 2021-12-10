@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" >
+
+  <!--
+  To make all loggers asynchronous, add the Disruptor-3.3.3.jar to the classpath and set the system property
+  Log4jContextSelector to org.apache.logging.log4j.core.async.AsyncLoggerContextSelector.
+  -->
+
+  <!-- the Kafka log appender is added programmatically in AIBlockchainMain.java. -->
+
+  <appender name="console" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out" />
+    <param name="immediateFlush" value="true"/>
+    <layout class="org.apache.log4j.EnhancedPatternLayout">
+      <param name="ConversionPattern" value="%d{ABSOLUTE}{GMT-6} %t [%c{1}] %m{no-lookups}%n" />
+    </layout>
+  </appender>
+
+  <!-- full class name in log output -->
+  <appender name="consoleDetailed" class="org.apache.log4j.ConsoleAppender">
+    <param name="Target" value="System.out" />
+    <layout class="org.apache.log4j.EnhancedPatternLayout">
+      <param name="ConversionPattern" value="%d{ABSOLUTE}{GMT-6} %t [%C] %m{no-lookups}%n" />
+    </layout>
+  </appender>
+
+  <logger name="org.apache.http">
+    <level value="error" />
+    <appender-ref ref="console" />
+  </logger>
+
+  <logger name="com.aiblockchain.alexa.handlers">
+    <level value="debug" />
+    <appender-ref ref="console" />
+  </logger>
+
+  <logger name="org.apache.kafka">
+    <level value="warn" />
+    <appender-ref ref="console" />
+  </logger>
+
+  <logger name="org.apache.zookeeper">
+    <level value="warn" />
+    <appender-ref ref="console" />
+  </logger>
+
+  <root>
+    <priority value="info" />
+    <appender-ref ref="console" />
+  </root>
+
+</log4j:configuration>
