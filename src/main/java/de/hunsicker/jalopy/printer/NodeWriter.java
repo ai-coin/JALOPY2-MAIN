@@ -21,6 +21,7 @@ import de.hunsicker.jalopy.storage.ConventionDefaults;
 import de.hunsicker.jalopy.storage.ConventionKeys;
 import de.hunsicker.jalopy.storage.Environment;
 import de.hunsicker.util.StringHelper;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -60,6 +61,8 @@ public class NodeWriter
     // TODO private static final String SEMI = ";" /* NOI18N */.intern();
     private static final String TAB = "\t" /* NOI18N */.intern();
     private static final String EMPTY_STRING = "" /* NOI18N */.intern();
+
+    private static final Logger LOGGER = Logger.getLogger(NodeWriter.class.getName());
 
     //~ Instance variables ---------------------------------------------------------------
 
@@ -515,7 +518,9 @@ public class NodeWriter
             if (leadingIndentSize > 0)
             {
                 _out.write(_leadingIndentSizeString);
-                System.out.println("writing: '" + _leadingIndentSizeString + "'");
+                if (LOGGER.isDebugEnabled()) {
+                  LOGGER.debug("writing: '" + _leadingIndentSizeString + "'");
+                }
                 this.column += leadingIndentSize;
             }
 
@@ -535,7 +540,9 @@ public class NodeWriter
                         String s = generateIndentString(length + string.length());
                         this.column += s.length();
                         _out.write(s);
-                        System.out.println("writing: '" + s + "'");
+                        if (LOGGER.isDebugEnabled()) {
+                          LOGGER.debug("writing: '" + s + "'");
+                        }
                     }
                     else
                     {
@@ -546,7 +553,9 @@ public class NodeWriter
                             s = StringHelper.replace(
                                     s, generateIndentString(this.indentSize), TAB);
                             _out.write(s);
-                             System.out.println("writing: '" + s + "'");
+                             if (LOGGER.isDebugEnabled()) {
+                               LOGGER.debug("writing: '" + s + "'");
+                             }
                         }
                         else
                         {
@@ -555,11 +564,15 @@ public class NodeWriter
                             s = StringHelper.replace(
                                     s, generateIndentString(this.indentSize), TAB);
                             _out.write(s);
-                            System.out.println("writing: '" + s + "'");
+                             if (LOGGER.isDebugEnabled()) {
+                              LOGGER.debug("writing: '" + s + "'");
+                             }
 
                             this.column += string.length();
                             _out.write(string);
-                            System.out.println("writing: '" + string + "'");
+                             if (LOGGER.isDebugEnabled()) {
+                              LOGGER.debug("writing: '" + string + "'");
+                             }
                         }
                     }
 
@@ -579,9 +592,13 @@ public class NodeWriter
                     }
 
                     _out.write(s);
-                    System.out.println("writing: '" + s + "'");
+                    if (LOGGER.isDebugEnabled()) {
+                      LOGGER.debug("writing: '" + s + "'");
+                    }
                     _out.write(string);
-                    System.out.println("writing: '" + string + "'");
+                    if (LOGGER.isDebugEnabled()) {
+                      LOGGER.debug("writing: '" + string + "'");
+                    }
 
                     break;
                 }
@@ -609,25 +626,33 @@ public class NodeWriter
                                 StringHelper.replace(
                                     string, generateIndentString(this.indentSize), TAB);
                             _out.write(string);
-                            System.out.println("writing: '" + string + "'");
+                            if (LOGGER.isDebugEnabled()) {
+                              LOGGER.debug("writing: '" + string + "'");
+                            }
                         }
                         else
                         {
                             if (spacesCount < 0)
                             {
-                                _out.write(TAB);
-                                System.out.println("writing: '" + TAB + "'");
+                               _out.write(TAB);
+                               if (LOGGER.isDebugEnabled()) {
+                                  LOGGER.debug("writing: '" + TAB + "'");
+                                }
                             }
 
                             _out.write(TAB);
-                            System.out.println("writing: '" + TAB + "'");
+                            if (LOGGER.isDebugEnabled()) {
+                              LOGGER.debug("writing: '" + TAB + "'");
+                            }
 
                             string =
                                 StringHelper.replace(
                                     string.substring(this.indentSize - spacesCount),
                                     generateIndentString(this.indentSize), TAB);
                             _out.write(string);
-                            System.out.println("writing: '" + string + "'");
+                            if (LOGGER.isDebugEnabled()) {
+                              LOGGER.debug("writing: '" + string + "'");
+                            }
                         }
 
                         break;
@@ -638,7 +663,9 @@ public class NodeWriter
                     offset = this.column;
                     this.column += string.length();
                     _out.write(string);
-                    System.out.println("writing: '" + string + "'");
+                    if (LOGGER.isDebugEnabled()) {
+                      LOGGER.debug("writing: '" + string + "'");
+                    }
 
                     break;
             }
