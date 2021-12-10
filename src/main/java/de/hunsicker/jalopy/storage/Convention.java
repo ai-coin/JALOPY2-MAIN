@@ -63,7 +63,7 @@ import javax.xml.transform.stream.StreamResult;
 /**
  * Represents a code convention: the settings that describe the desired coding style for
  * Java source files.
- * 
+ *
  * <p>
  * To ensure type-safety, valid key access, two accompanying classes are provided:
  * </p>
@@ -145,7 +145,7 @@ public final class Convention
     /** Base settings directory. */
     private static File _settingsDirectory;
 
-    /** Bbackup directory. */
+    /** Backup directory. */
     private static File _backupDirectory;
 
     /** Class type repository directory. */
@@ -584,7 +584,7 @@ public final class Convention
 
             try
             {
-                isr = 
+                isr =
                         new BufferedInputStream(in);
 
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -598,7 +598,7 @@ public final class Convention
             catch (SAXException ex)
             {
                 throw new IOException(ex.getMessage());
-            } 
+            }
             catch (ParserConfigurationException ex) {
                 throw new IOException(ex.getMessage());
 			}
@@ -774,7 +774,7 @@ public final class Convention
 
     /**
      * Returns the boolean value associated with the given key.
-     * 
+     *
      * <p>
      * This implementation invokes {@link #get(Convention.Key,String) <tt>get(key,
      * null)</tt>}. If the return value is non-null, it is compared with <tt>"true"</tt>
@@ -927,7 +927,7 @@ public final class Convention
 				Transformer transformer = TransformerFactory.newInstance().newTransformer();
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 				transformer.transform(new DOMSource(doc),new StreamResult(out));
-                
+
                 //Document document = new Document(convertMapToXml(_values));
                 //outputter.output(document, out);
                 // TODO dbf.
@@ -989,7 +989,7 @@ public final class Convention
 
     /**
      * Returns the value associated with the given key.
-     * 
+     *
      * <p>
      * This implementation first checks to see if <tt>key</tt> is <tt>null</tt> throwing
      * a <tt>NullPointerException</tt> if this is the case.
@@ -1059,7 +1059,7 @@ public final class Convention
     /**
      * Implements the <tt>putBoolean</tt> method as per the specification in {@link
      * Convention#putBoolean(Convention.Key,boolean)}.
-     * 
+     *
      * <p>
      * This implementation translates <tt>value</tt> to a string with {@link
      * String#valueOf(boolean)} and invokes {@link #put(Convention.Key,String)} on the
@@ -1080,7 +1080,7 @@ public final class Convention
     /**
      * Implements the <tt>putInt</tt> method as per the specification in {@link
      * Convention#putInt(Convention.Key,int)}.
-     * 
+     *
      * <p>
      * This implementation translates <tt>value</tt> to a string with {@link
      * Integer#toString(int)} and invokes {@link #put(Convention.Key,String)} on the
@@ -1299,20 +1299,20 @@ public final class Convention
             if (children instanceof Element && children.item(i) instanceof Element) {
                 Element childElement = (Element) children.item(i);
                 convertXmlToMap(map, childElement);
-                
+
             }
-            
+
             else if (i_len == 1){
                 StringBuffer path = new StringBuffer();
                 String value = element.getFirstChild().getNodeValue();
-    
+
                 while (true)
                 {
                     if (path.length() > 0)
                     {
                         path.insert(0, '/');
                     }
-    
+
                     path.insert(0, element.getTagName());
                     if (element.getParentNode() instanceof Element) {
                     element = (Element) element.getParentNode();
@@ -1320,16 +1320,16 @@ public final class Convention
                     else {
                         element = null;
                     }
-    
+
                     if ((element == null) || element.getTagName().equals("jalopy" /* NOI18N */))
                     {
                         break;
                     }
                 }
-                
-    
+
+
                 map.put(new Key(new String(path)), value);
-    
+
                 return;
             }
             else {
@@ -2483,7 +2483,7 @@ public final class Convention
 
                     break;
             }
-            
+
             for (
                 Iterator i = new HashMap(settings._values).keySet().iterator();
                 i.hasNext();)
@@ -2501,7 +2501,7 @@ public final class Convention
                 }
             }
         }
-        
+
         // Temporary modify one of the keys
         // TODO Update to add in the order, this requires a version change !
         String s=settings.get(ConventionKeys.SORT_ORDER,DeclarationType.getOrder());
@@ -2512,7 +2512,7 @@ public final class Convention
         if (t!=z) {
             settings.put(ConventionKeys.SORT_ORDER,DeclarationType.getOrder());
         }
-        
+
     }
 
 
@@ -2551,7 +2551,7 @@ public final class Convention
         map = new java.util.TreeMap(map);
 
         //doc.createElement("jalopy" /* NOI18N */);
-        
+
         Element root = doc.createElement("jalopy" /* NOI18N */);
         doc.appendChild(root);
 
@@ -2567,9 +2567,9 @@ public final class Convention
             {
                 String elName = (String) pathList.get(i);
                 NodeList children = go.getElementsByTagName(elName);
-                
+
                 Element child = null;
-                
+
                 if (children.getLength() == 0)
                 {
                     child = doc.createElement(elName);
