@@ -1,7 +1,7 @@
 /*
  * GeneratedTestImpl.java
  *
- * Created on Dec 10, 2021, 12:37:44 PM, composed by generated from requirements from reed.
+ * Created on Dec 10, 2021, 05:50:32 PM, composed by generated from requirements from reed.
  *
  * Description: Provides an expected class to be generated using Texai Behavior Language.
  *
@@ -9,7 +9,8 @@
  */
 package org.texai.bl.generated;
 
-/** 
+
+/**
  *
  * @author Expert System
  */
@@ -22,12 +23,11 @@ public class GeneratedTestImpl extends java.lang.Object {
   /**
    * Performs some test operations.
    *
-
    * @param parameterString the given string value
    * @param parameterInt the given int value
    * @return the result of the test string operation
    */
-  public java.lang.String testMethod(
+  public String testMethod(
           final String parameterString,
           final int parameterInt) {
     //Preconditions
