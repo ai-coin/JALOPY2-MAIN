@@ -55,7 +55,7 @@ final class ConstructorDeclarationPrinter
           throws IOException {
     JavaNode n = (JavaNode) node;
 
-    out.printNewline();
+//    out.printNewline(); SLR
 
     addCommentIfNeeded(n, out);
 

@@ -16,7 +16,6 @@ package org.texai.bl.generated;
  * @author Expert System
  */
 public class GeneratedTestImpl extends java.lang.Object {
-
   /** Constructs a new GeneratedTestImpl instance. */
   public GeneratedTestImpl() {
   }
