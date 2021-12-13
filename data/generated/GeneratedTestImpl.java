@@ -1,7 +1,7 @@
 /*
  * GeneratedTestImpl.java
  *
- * Created on Dec 12, 2021, 05:35:52 PM, composed by generated from requirements from reed.
+ * Created on Dec 12, 2021, 08:09:23 PM, composed by generated from requirements from reed.
  *
  * Description: Provides an expected class to be generated using Texai Behavior Language.
  *
@@ -10,6 +10,7 @@
 package org.texai.bl.generated;
 
 /**
+ * Provides an expected class to be generated using Texai Behavior Language.
  *
  * @author Expert System
  */
