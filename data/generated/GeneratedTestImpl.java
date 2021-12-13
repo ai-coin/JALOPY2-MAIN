@@ -1,20 +1,33 @@
 /*
  * GeneratedTestImpl.java
  *
- * Created on Dec 10, 2021, 05:50:32 PM, composed by generated from requirements from reed.
+ * Created on Dec 12, 2021, 05:13:54 PM, composed by generated from requirements from reed.
  *
  * Description: Provides an expected class to be generated using Texai Behavior Language.
  *
- * Copyright (C) Dec 10, 2021 Stephen L. Reed.
+ * Copyright (C) Dec 12, 2021 Stephen L. Reed.
  */
 package org.texai.bl.generated;
-
 
 /**
  *
  * @author Expert System
  */
 public class GeneratedTestImpl extends java.lang.Object {
+
+  // a variables section comment
+  // a test static string
+  private static final String TEST_STATIC_STRING = "xyz";
+  // a test int
+  private int testInt;
+  // a test long
+  protected long testLong;
+  // a test float
+  public float testFloat;
+  // a test double
+  double testDouble;
+  // a test boolean
+  boolean testBoolean;
 
   /** Constructs a new GeneratedTestImpl instance. */
   public GeneratedTestImpl() {
@@ -33,6 +46,7 @@ public class GeneratedTestImpl extends java.lang.Object {
     //Preconditions
     assert parameterString != null;
 
+    testLong = -1 + parameterInt;
     return "the result";
   }
 }
