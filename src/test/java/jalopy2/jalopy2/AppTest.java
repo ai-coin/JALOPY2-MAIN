@@ -48,13 +48,16 @@ public class AppTest extends TestCase {
     final String emittedSourceCodePath = "data/generated/GeneratedTestImpl.java";
     final String formattedSourceCodePath = "src/main/java/org/texai/bl/generated/GeneratedTestImpl.java";
     final File formattedSourceCodeFile = new File(formattedSourceCodePath);
+    final StringBuffer stringBuffer = new StringBuffer();
     try {
       jalopy.setInput(new File(emittedSourceCodePath));
       jalopy.setOutput(formattedSourceCodeFile);
+      //jalopy.setOutput(stringBuffer);
     } catch (final FileNotFoundException ex) {
       fail(ex.getMessage());
     }
     jalopy.format();
+    //LOGGER.info("Jalopy stringBuffer...\n" + stringBuffer.toString());
 
     try {
       final String formattedSourceCode = FileUtils.fileRead(formattedSourceCodeFile);

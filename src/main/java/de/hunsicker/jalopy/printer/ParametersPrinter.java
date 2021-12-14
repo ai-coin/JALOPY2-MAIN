@@ -63,6 +63,7 @@ final class ParametersPrinter extends AbstractPrinter {
 
         Marker  marker = out.state.markers.add();
 
+        out.flush();
         switch (node.getType()) {
             // a method or ctor declaration
             case JavaTokenTypes.PARAMETERS:
@@ -735,8 +736,11 @@ SEARCH:
                        {
                            out.print(SPACE, JavaTokenTypes.WS);
                        }
-                     */
-                    printIndentation(4, out); // SLR
+                    */
+                    // SLR
+                    if (paramIndex != FIRST_PARAM || node.getNumberOfChildren() > 1) {
+                        printIndentation(4, out);
+                    }
                     PrinterFactory.create(parameter, out).print(parameter, out);
 
                     paramIndex++;
